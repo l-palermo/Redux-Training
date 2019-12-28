@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { fetchBooks } from '../../action/booksActions';
 
-const List = () => {
-  const [books, setBooks] = useState([]);
-
+const List = ({books}) => {
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then(response => response.json())
-      .then(json => setBooks(json))
-  })
+    fetchBooks()
+  }, [])
   
   return (
     <div>
@@ -22,4 +20,8 @@ const List = () => {
   );
 }
  
-export default List;
+const mapStateToProps = state => ({
+  books: state.books.items
+});
+
+export default connect(mapStateToProps, { fetchBooks })(List);
