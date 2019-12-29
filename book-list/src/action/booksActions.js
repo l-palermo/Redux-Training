@@ -1,14 +1,11 @@
 import { FETCH_BOOKS } from './types';
-import { store } from '../redux/store';
 
-export const fetchBooks = () => {
+export const fetchBooks = (dispatch) => {
   fetch('https://jsonplaceholder.typicode.com/posts')
     .then(response => response.json())
-    .then(json => {
-      console.log(12)
-      store.dispatch({
+    .then(json => dispatch({
       type: FETCH_BOOKS,
       payload: json
     })
-  })
+  )
 };
