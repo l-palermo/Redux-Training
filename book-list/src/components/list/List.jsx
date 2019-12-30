@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchBooks } from '../../action/booksActions';
+import { fetchBooks } from '../../redux/action/fetchBooks';
 
 const List = ({books, fetchBooks}) => {
   useEffect(() => {
@@ -24,8 +24,8 @@ const mapStateToProps = state => ({
   books: state.books.items
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetchBooks: () => fetchBooks(dispatch)
+const mapDispatchToProps = (dispatch) => ({
+  fetchBooks: () => dispatch(fetchBooks())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(List);
