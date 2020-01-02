@@ -1,7 +1,7 @@
 import fetch from 'cross-fetch';
 import { fetchBooksPending, fetchBooksSuccess, fetchBooksError } from './fetchActions'
 
-export const fetchBooks = () => (dispatch) => {
+export const fetchBooks = () => dispatch => {
   console.log(5)
   dispatch(fetchBooksPending());
   console.log(7)

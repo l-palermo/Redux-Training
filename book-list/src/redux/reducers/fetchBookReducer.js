@@ -1,12 +1,17 @@
-import { FETCH_BOOKS_SUCCESS, FETCH_BOOKS_PENDING, FETCH_BOOKS_ERROR } from '../actions/types';
+import { FETCH_BOOKS_SUCCESS,
+  FETCH_BOOKS_PENDING,
+  FETCH_BOOKS_ERROR,
+CREATE_NEW_BOOK,
+JOIN_ITEMS } from '../actions/types';
 
 const initialState = {
   pending: false,
   items: [],
-  error: null
+  error: null,
+  item: {},
 }
 
-export default (state = initialState, action) => {
+export const fetchBookReducer = (state = initialState, action) => {
   console.log('A')
   switch (action.type) {
     case FETCH_BOOKS_PENDING:
@@ -27,6 +32,17 @@ export default (state = initialState, action) => {
           ...state,
           pending: false,
           error: action.error
+        }
+      case CREATE_NEW_BOOK:
+        return {
+          ...state,
+          item: action.payload
+        }
+      case JOIN_ITEMS:
+        console.log(25)
+        return {
+          ...state,
+          items: [state.item, ...state.items]
         }
     default:
       return state;
