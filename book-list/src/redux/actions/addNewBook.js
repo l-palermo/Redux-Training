@@ -1,8 +1,8 @@
 import { ADD_NEW_BOOK } from './types';
 
-export const addNewBook = (title) => {
-  return {
-    type: ADD_NEW_BOOK,
-    payload: title
-  }
-}
+const addNewBook = (title) => ({
+  type: ADD_NEW_BOOK,
+  payload: title,
+});
+
+export default addNewBook;

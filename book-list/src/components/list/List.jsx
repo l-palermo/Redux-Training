@@ -1,45 +1,57 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchBooks } from '../../redux/actions/fetchBooks';
-import { joinBooks } from '../../redux/actions/joinBooks';
+import fetchBooks from '../../redux/actions/fetchBooks';
+import joinBooks from '../../redux/actions/joinBooks';
 
-const List = ({books, book, fetchBooks, joinBooks}) => {
-  console.log(3)
-  console.log(book)
-  console.log(22)
-
-  useEffect(() => {
-    fetchBooks()
-  }, [fetchBooks])
+const List = ({
+  books, newBook, fetchBooks, joinBooks,
+}) => {
+  console.log(3);
 
   useEffect(() => {
-    if (book.id) {
-      console.log(23)
-      joinBooks()
+    fetchBooks();
+  }, [fetchBooks]);
+
+  useEffect(() => {
+    if (newBook.title) {
+      console.log(23);
+      joinBooks();
     }
-  }, [book.id])
+  }, [newBook.title, joinBooks]);
 
   return (
     <div>
       {console.log(4)}
-      {console.log(books)}
       <h2> Books: </h2>
-      { books.map(book => {
-        return <div key={book.id}> 
-        <h3>{book.title}</h3>
-        <p>{book.body}</p>
+      { books.map((book) => (
+        <div key={book.id}>
+          <h3>{book.title}</h3>
+          <p>{book.body}</p>
         </div>
-      })}
+      ))}
     </div>
   );
-}
- 
-const mapStateToProps = state => ({
+};
+
+const mapStateToProps = (state) => ({
   books: state.books.items,
-  book: state.books.item
+  newBook: state.books.item,
 });
 const mapDispatchToProps = (dispatch) => ({
   fetchBooks: () => dispatch(fetchBooks()),
-  joinBooks: () => dispatch(joinBooks())
+  joinBooks: () => dispatch(joinBooks()),
 });
+
+List.propTypes = {
+  books: PropTypes.arrayOf(Object).isRequired,
+  newBook: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+  }).isRequired,
+  fetchBooks: PropTypes.func.isRequired,
+  joinBooks: PropTypes.func.isRequired,
+};
+
 export default connect(mapStateToProps, mapDispatchToProps)(List);

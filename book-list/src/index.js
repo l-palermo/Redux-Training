@@ -1,15 +1,19 @@
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
-import { store } from './redux/store'
+import App from './App.jsx';
+import * as serviceWorker from './serviceWorker';
+import store from './redux/store';
 
 ReactDOM.render(
   <Provider store={store}>
     <App />
-  </Provider>, document.getElementById('root'));
+  </Provider>, document.getElementById('root'),
+);
 
 
 // If you want your app to work offline and load faster, you can change
