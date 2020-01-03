@@ -3,8 +3,8 @@ import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import App from './App';
 import Navbar from './components/navbar/Navbar';
-import List from './components/list/List';
-import AddBook from './components/addBooks/AddBook';
+import LoadList from './container/loadList/LoadList';
+import AddBook from './container/addBooks/AddBook';
 
 configure({ adapter: new Adapter() });
 
@@ -21,7 +21,7 @@ describe('App', () => {
     expect(navbar).toHaveLength(1);
   });
   test('renders the List', () => {
-    const list = wrapper.find(List);
+    const list = wrapper.find(LoadList);
     expect(list).toHaveLength(1);
   });
   test('renders the AddBook', () => {

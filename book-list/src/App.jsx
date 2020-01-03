@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import Navbar from './components/navbar/Navbar';
-import List from './components/list/List';
-import AddBook from './components/addBooks/AddBook';
+import LoadList from './container/loadList/LoadList';
+import AddBook from './container/addBooks/AddBook';
 
 function App() {
   console.log(1);
@@ -15,7 +15,7 @@ function App() {
         <AddBook />
       </div>
       <div>
-        <List />
+        <LoadList />
       </div>
     </div>
   );

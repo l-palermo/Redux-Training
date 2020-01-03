@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import fetchBooks from '../../redux/actions/fetchBooks';
-import joinBooks from '../../redux/actions/joinBooks';
+import Book from '../book/Book';
 
 const List = ({
   books, newBook, fetchBooks, joinBooks,
@@ -25,23 +23,15 @@ const List = ({
       {console.log(4)}
       <h2> Books: </h2>
       { books.map((book) => (
-        <div key={book.id}>
-          <h3>{book.title}</h3>
-          <p>{book.body}</p>
-        </div>
+        <Book
+          key={book.id}
+          title={book.title}
+          body={book.body}
+        />
       ))}
     </div>
   );
 };
-
-const mapStateToProps = (state) => ({
-  books: state.books.items,
-  newBook: state.books.item,
-});
-const mapDispatchToProps = (dispatch) => ({
-  fetchBooks: () => dispatch(fetchBooks()),
-  joinBooks: () => dispatch(joinBooks()),
-});
 
 List.propTypes = {
   books: PropTypes.arrayOf(Object).isRequired,
@@ -54,4 +44,4 @@ List.propTypes = {
   joinBooks: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(List);
+export default List;
